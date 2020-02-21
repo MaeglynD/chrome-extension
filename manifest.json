@@ -1,0 +1,32 @@
+{
+	"name": "video extension",
+	"version": "1.0",
+	"description": "makes my life easier",
+	"permissions": ["storage", "activeTab", "tabs"],
+	"content_scripts": [
+		{
+			"css": [
+				"styles.css"
+			],
+			"js": [
+				"content.js"
+			],
+			"matches": [
+				"http://boards.4chan.org/gif/*",
+				"http://boards.4channel.org/wsg/*"
+			]
+		}
+	],
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+	"icons": {
+		"128": "icons/icon.png"
+	},
+	"background": {
+		"scripts": [
+			"background.js"
+		]
+	},
+	"manifest_version": 2
+}
