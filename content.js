@@ -2,7 +2,6 @@
 // Perhaps, yet here it is 
 (function(){
 	if (window.location.href.slice(-9).toLowerCase().includes('catalog')) return;
-	// const current_board = window.location.href.split('/')[3];
 	const all_videos = [...document.querySelectorAll('.fileThumb')].map((x) => {
 		return {
 			url: x.href,
