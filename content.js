@@ -1,6 +1,6 @@
 // Is wrapping your entire code in an IFFE bad practice?
 // Perhaps, yet here it is 
-(function(){
+(function () {
 	if (window.location.href.slice(-9).toLowerCase().includes('catalog')) return;
 	const all_videos = [...document.querySelectorAll('.fileThumb')].map((x) => {
 		return {
@@ -39,9 +39,9 @@
 
 	document.body.insertAdjacentHTML('afterbegin',
 		`<div class="rc-fullscreen-video hidden" id="vc_con">
-		<video controls loop autoplay></video>
-		<div class="rc-reply-container hidden"></div>
-	</div>`
+			<video controls autoplay></video>
+			<div class="rc-reply-container hidden"></div>
+		</div>`
 	);
 
 	// Init
@@ -52,7 +52,7 @@
 	reply_container = video_container.childNodes[3];
 	get_all_replies(all_videos[0].id);
 	video.onended = () => {
-		if (!autoroll) {
+		if (autoroll) {
 			current_index == all_videos.length - 1 ? current_index = 0 : current_index++;
 			change_video()
 		}
@@ -76,7 +76,10 @@
 
 		if (running) {
 			// A [toggle auto-play next video]
-			if (kc == binds.key_autoroll) autoroll = !autoroll;
+			if (kc == binds.key_autoroll) {
+				autoroll = !autoroll;
+				autoroll ? video.removeAttribute('loop') : video.setAttribute('loop', '');
+			}
 			// ESC [Close player]
 			if (kc == '27') {
 				video_container.classList = 'rc-fullscreen-video hidden';
@@ -102,11 +105,11 @@
 	};
 
 	chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-			if (request.hasOwnProperty('bind_data')) {
-				binds = request['bind_data'];
-			}
-			if (request.hasOwnProperty('single_bind')) {
-				binds[request['single_bind'][0]] = request['single_bind'][1];
-			}
-		});
+		if (request.hasOwnProperty('bind_data')) {
+			binds = request['bind_data'];
+		}
+		if (request.hasOwnProperty('single_bind')) {
+			binds[request['single_bind'][0]] = request['single_bind'][1];
+		}
+	});
 })();
