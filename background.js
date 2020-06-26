@@ -1,4 +1,4 @@
-chrome.runtime.onInstalled.addListener(function () {
+chrome.runtime.onInstalled.addListener(() => {
 	const binds = {
 		'key_toggle': '67',
 		'key_prev': '86',
@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(function () {
 		'key_replies': '78',
 		'key_autoroll': '65'
 	}
-	chrome.storage.sync.set(binds, function () {
+	chrome.storage.sync.set(binds, () => {
 		console.log('binds set');
 	});
 });

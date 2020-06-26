@@ -12,8 +12,8 @@
 				"content.js"
 			],
 			"matches": [
-				"http://boards.4chan.org/gif/*",
-				"http://boards.4channel.org/wsg/*"
+				"https://boards.4chan.org/*",
+				"https://boards.4channel.org/*"
 			]
 		}
 	],

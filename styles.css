@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap') format('woff');
+}
 
 .rc-fullscreen-video{
 	height: 100vh;
@@ -21,6 +26,10 @@
 .rc-fullscreen-video video{
 	height: 100%;
 	width: 100%;
+}
+.rc-fullscreen-video img{
+	margin: auto;
+	height: 100%;
 }
 .rc-fullscreen-video .rc-reply-container{
 	width: 300px;
@@ -60,6 +69,10 @@
 	display: block;
 	margin: unset;
 	margin-bottom: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.rc-reply-container blockquote:first-of-type{
+	border: 1px solid white;
 }
 .e-body, .e-body *{
 	box-sizing: border-box !important;
