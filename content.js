@@ -1,7 +1,7 @@
 // Is wrapping your entire code in an IFFE bad practice?
 // Perhaps, yet here it is 
 (function(){
-	if (!window.location.href.includes('thread')) return;
+	if (!['thread', 'yuki.la'].some((x) => window.location.href.includes(x))) return;
 
 	const all_videos = [...document.querySelectorAll('.fileThumb')].map((x) => {
 		return {
@@ -42,6 +42,31 @@
 		scroll_to_msg(all_videos[current_index].id);
 	};
 
+	const init_upcoming = () => {
+		
+		all_videos.forEach((x, i) => {
+			const sections = x.url.split('/');
+
+			upcoming_container.insertAdjacentHTML(
+				'beforeend',
+				`<img 
+					src="//i.4cdn.org/${sections[3]}/${sections[4].split('.')[0]}s.jpg"
+					class="${i == 0 ? 'active' : ''}"
+				/>`
+			);
+		});
+
+		[...upcoming_container.children].forEach((x, i) => {
+			x.onclick = () => {
+				upcoming_container.querySelector('.active').classList.remove('active');
+				x.classList.toggle('active');
+
+				current_index = i;
+				change_video();
+			}
+		});
+	};
+
 	let running = false,
 		is_init = false,
 		autoroll = true,
@@ -57,13 +82,15 @@
 		video_container,
 		video,
 		image,
-		reply_container;
+		reply_container,
+		upcoming_container;
 
 	document.body.insertAdjacentHTML('afterbegin',
 		`<div class="rc-fullscreen-video hidden" id="vc_con">
 			<video controls autoplay></video>
 			<img />
 			<div class="rc-reply-container hidden"></div>
+			<div class="rc-reply-container rc-upcoming hidden"></div>
 		</div>`
 	);
 
@@ -72,7 +99,12 @@
 	video = video_container.childNodes[1];
 	image = video_container.childNodes[3];
 	reply_container = video_container.childNodes[5];
+	upcoming_container = video_container.childNodes[7]
+	
+	if (!window.location.href.includes('yuki.la')) init_upcoming();
 	change_video();
+	if (is_video) video.pause();
+
 	video.onended = () => {
 		if (autoroll) {
 			current_index == all_videos.length - 1 ? current_index = 0 : current_index++;
@@ -81,6 +113,9 @@
 	}
 
 	document.onkeydown = (e) => {
+		// If input is focused
+		if (document.activeElement.tagName === 'TEXTAREA') return;
+
 		const kc = e.keyCode
 		// C [Toggle video playlist]
 		if (kc == binds.key_toggle) {
@@ -115,7 +150,9 @@
 			}
 			// N [Show replies]
 			if (kc == binds.key_replies) {
-				reply_container.classList.toggle('hidden');
+				[reply_container, upcoming_container].forEach((x) => {
+					x.classList.toggle('hidden');
+				});
 			}
 		}
 	};

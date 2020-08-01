@@ -13,7 +13,8 @@
 			],
 			"matches": [
 				"https://boards.4chan.org/*",
-				"https://boards.4channel.org/*"
+				"https://boards.4channel.org/*",
+				"https://yuki.la/*"
 			]
 		}
 	],

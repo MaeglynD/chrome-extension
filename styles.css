@@ -29,7 +29,9 @@
 }
 .rc-fullscreen-video img{
 	margin: auto;
-	height: 100%;
+	width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .rc-fullscreen-video .rc-reply-container{
 	width: 300px;
@@ -73,6 +75,25 @@
 }
 .rc-reply-container blockquote:first-of-type{
 	border: 1px solid white;
+}
+.rc-reply-container.rc-upcoming{
+	width: 100px;
+	right: unset;
+	left: 0;
+	background: rgba(0,0,0,0.05);
+}
+.rc-reply-container.rc-upcoming img {
+	width: 100%;
+	margin: 1px 0px;
+    height: unset;
+	object-fit: unset;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 3px;
+	cursor: pointer;
+}
+.rc-reply-container.rc-upcoming img.active {
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 3px;
 }
 .e-body, .e-body *{
 	box-sizing: border-box !important;
