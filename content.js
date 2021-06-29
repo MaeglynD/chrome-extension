@@ -26,6 +26,18 @@ if (location.includes('reddit.com')) {
 	}
 }
 
+if (location.includes('instagram.com')) {
+	document.onclick = ({ target }) => {
+		const img = target?.parentElement?.querySelector('img');
+
+		if (img) {
+			if(confirm('open in new tab bro?')) {
+				window.open(img.src)
+			}
+		}
+	}
+}
+
 // Is wrapping your entire code in an IFFE bad practice?
 // Perhaps, yet here it is 
 (function(){
