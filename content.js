@@ -1,6 +1,29 @@
 // URL
 const location = window.location.href;
 
+// Twitter image grabber TODO
+// const media2 = [...document.querySelectorAll('img')]
+// 	.filter(({ src }) => !src.includes('profile_images'))
+// 	.map(({ src }) => `${src.split('&')[0]}&name=medium`);
+
+// let i = 0;
+
+// setInterval(async () => {
+// 	const src = media2[i];
+
+// 	document.body.innerHTML = `
+// 		<img src="${src}" style="height:100vh; position: fixed; left: 0; right: 0;"/>
+// 	`;
+
+// 	const img = new Image();
+// 	img.src = src;
+
+// 	await img.decode();
+
+
+// 	i++;
+// }, 2000);
+
 // If we're on reddit, we'll expand all expandable videos
 if (location.includes('reddit.com')) {
 	// When a key is pressed...
