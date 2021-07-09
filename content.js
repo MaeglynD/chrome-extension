@@ -15,12 +15,6 @@ const location = window.location.href;
 // 		<img src="${src}" style="height:100vh; position: fixed; left: 0; right: 0;"/>
 // 	`;
 
-// 	const img = new Image();
-// 	img.src = src;
-
-// 	await img.decode();
-
-
 // 	i++;
 // }, 2000);
 
